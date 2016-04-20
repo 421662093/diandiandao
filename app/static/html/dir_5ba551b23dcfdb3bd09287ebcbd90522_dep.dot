@@ -1,0 +1,13 @@
+digraph "D:/project/flask/app" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9fa759b945beaac971ac21c562c121de {
+    graph [ bgcolor="#ddddee", pencolor="black", label="flask" fontname="Helvetica", fontsize="10", URL="dir_9fa759b945beaac971ac21c562c121de.html"]
+  subgraph clusterdir_5ba551b23dcfdb3bd09287ebcbd90522 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_5ba551b23dcfdb3bd09287ebcbd90522.html"];
+    dir_5ba551b23dcfdb3bd09287ebcbd90522 [shape=plaintext label="app"];
+    dir_b28afc94b7cd6b998f7ccd7b4e35de58 [shape=box label="api_1_0" color="black" fillcolor="white" style="filled" URL="dir_b28afc94b7cd6b998f7ccd7b4e35de58.html"];
+  }
+  }
+}

@@ -1,0 +1,339 @@
+{% extends "admin/base.html" %}
+{% block title %}{{roid==2 and '专家' or '用户'}}管理{% endblock %}
+
+{% block css %}
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="/static/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="/static/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="/static/global/plugins/bootstrap-datepicker/css/datepicker.css"/>
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="/static/global/css/components-md.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="/static/global/css/plugins-md.css" rel="stylesheet" type="text/css"/>
+<link href="/static/admin/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="/static/admin/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
+<link href="/static/admin/css/custom.css" rel="stylesheet" type="text/css"/>
+<script src="/static/admin/scripts/page.js"></script>
+<!-- END THEME STYLES -->
+{% endblock %}
+{% block content %}
+<!--{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+-->
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn blue">Save changes</button>
+							<button type="button" class="btn default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<div class="portlet grey-cascade box">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-cogs"></i>{% if index>-1 %}{{roid==2 and '专家' or '用户'}}管理{% else %}搜索：{{text}}{% endif %}
+							</div>
+							<div class="actions">
+								<a href="{{ url_for('.user_list') }}" class="btn btn-default btn-sm">
+								<i class="fa fa-refresh"></i> 刷新 </a>
+							</div>
+							<div class="actions">
+								<a href="{{ url_for('.user_edit',id=0,roid=roid, _external=True) }}" class="btn btn-default btn-sm">
+								<i class="fa fa-refresh"></i> 添加 </a>
+							</div>
+							{% if index==-1 %}
+							<div class="actions">
+								<a href="{{ url_for('.user_list',roid=roid) }}" class="btn btn-default btn-sm">
+								<i class="fa fa-refresh"></i> 返回列表 </a>
+							</div>
+							{% endif %}
+							<div class="actions">
+								<input type="text" id="search" style="color:#000000" value="{{text}}" />
+								<a href="javascript:;" onclick="searchfun()" class="btn btn-default btn-sm">搜索 </a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="table-responsive">
+								<table class="table table-hover table-bordered table-striped">
+								<thead>
+								<tr>
+									<th>
+										 ID
+									</th>
+									<th>
+										 领域
+									</th>
+									<th>
+										 行业
+									</th>
+									<th>
+										 用户名
+									</th>
+									<th>
+										 姓名
+									</th>
+									<th>
+										 职位
+									</th>
+									<th>
+										 更新时间
+									</th>
+                                    <th>
+                                         创建时间
+                                    </th>
+									<th style="width:60px">
+										 状态
+									</th>
+									<th style="width:60px">
+										 {% if sort==0 %}
+										 <a href="/admin/userlist/sort/{{roid}}/1">排序</a>
+										 {% else %}
+										 <a href="/admin/userlist/{{roid}}/1">排序↓</a>
+										 {% endif %}
+									</th>
+									<th>
+										 操作
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for item in userlist %}
+								<tr>
+									<td>
+									{{item.id}}
+									</td>
+									<td>
+									{{func.getdomain(item.domainid)}}
+									</td>
+									<td>
+									{{func.getindustry(item.industryid)}}
+									</td>
+									<td>
+									{{item.username}}
+									</td>
+									<td>
+									{{item.name}}
+									</td>
+									<td>
+									{{item.job}}
+									</td>
+									<td>
+									{{func.stamp2time(item.stats.lastaction == 0 and item.date or item.stats.lastaction,'%Y-%m-%d %H:%M')}}
+									</td>
+                                    <td>
+                                    {{func.stamp2time(item.date,'%Y-%m-%d %H:%M')}}
+                                    </td>
+									<!--<td>
+										<span class="label label-sm label-success">
+										{{ item.state==1 and '正常' or '禁止' }}
+										</span>
+									</td>-->
+									<td id="state_txt_{{item.id}}">
+									{{func.getuserstate(item.state)}}
+									</td>
+									<td>
+									<input type="text" class="sortupdate" uid="{{item.id}}" id="sort_{{item.id}}" old="{{item.sort}}" value="{{item.sort}}" style="width:30px">
+                                    </td>
+									<td>
+										<a href="/admin/useredit/{{item.id}}/{{roid==2 and 2 or 3}}/{{index==-1 and 1 or index}}?s={{sort}}" class="label label-sm label-success">
+										编辑
+										</a><br/>
+										{% if roid==2 %}
+										<a href="/admin/topicedit/{{item.id}}/1" class="label label-sm label-success">
+										添加话题
+										</a><br/>
+										<a href="/admin/topiclist/{{item.id}}" class="label label-sm label-success">
+										查看话题
+										</a><br/>
+										{% endif %}
+										{% if item.state==-2 %}
+										<a id="state_{{item.id}}" href="javascript:javascript:state({{item.id}});" class="label label-sm label-success">审核通过</a><br/>
+										{% endif %}
+										{% if item.state==1 %}
+										<a id="state_{{item.id}}" href="javascript:unstate({{item.id}});" class="label label-sm label-success">下线</a>
+										{% endif %}
+										<br/><a id="im_{{item.id}}" href="javascript:javascript:createim({{item.id}});" class="label label-sm label-success">创建子帐号</a><br/>
+									</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+								</table>
+							</div>
+							{% if index>-1 %}
+							<div class="row">
+							<div class="col-md-5 col-sm-12">
+							<div class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">
+							当前第 {{index}} 页，共 {{pagecount}} 页
+							</div>
+							</div>
+							<div class="col-md-7 col-sm-12">
+							<div class="dataTables_paginate paging_bootstrap_full_number" id="sample_1_paginate">
+							<ul class="pagination" style="visibility: visible;">
+							{% if sort==1 %}
+							<script>Pagebtn('/admin/userlist/sort/{{roid}}',{{pagecount}},{{index}})</script>
+							{% else %}
+							<script>Pagebtn('/admin/userlist/{{roid}}',{{pagecount}},{{index}})</script>
+							{% endif %}
+							</ul>
+							</div>
+							</div>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+{% endblock %}
+
+{% block js %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="/static/global/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="/static/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="/static/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="/static/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="/static/admin/scripts/layout.js" type="text/javascript"></script>
+<script src="/static/admin/scripts/quick-sidebar.js" type="text/javascript"></script>
+<script src="/static/admin/scripts/demo.js" type="text/javascript"></script>
+<script src="/static/global/scripts/datatable.js"></script>
+<script src="/static/admin/pages/scripts/ecommerce-orders.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+        jQuery(document).ready(function() {    
+            Metronic.init(); // init metronic core components
+			Layout.init(); // init current layout
+			QuickSidebar.init(); // init quick sidebar
+			Demo.init(); // init demo features
+            EcommerceOrders.init();
+            $('.sortupdate').blur(function(){
+            	ethis = $(this)
+            	val = ethis.val()
+            	if(val!=$(this).attr('old'))
+            	{
+            		ethis.attr('disabled','disabled')
+	            	$.ajax({
+					    type: "POST",
+					    url: '/admin/userlist?type=sort&uid='+ethis.attr('uid')+'&val='+val,
+					    data: {},
+					    dataType: 'json',
+					    success: function(ret) {
+					    	ethis.attr('old',val)
+					    	ethis.removeAttr('disabled')
+					    },
+				    	error:function(ret) {
+				    		alert('更新失败请重试')
+				    	}
+					});
+	            }
+            })
+
+        });
+lock=true
+function searchfun(){
+	var searchtext = $('#search').val()
+	if(searchtext.length>0)
+	{
+		location.href='{{ url_for('.user_list') }}/search/{{roid}}/'+searchtext
+	}
+}
+function unstate(uid){
+	ethis = $("#state_"+uid)
+	
+	if(lock)
+	{
+		lock = false
+		ethis.html('Loading')
+	$.ajax({
+	    type: "POST",
+	    url: '/admin/userlist?type=unstate&uid='+uid,
+	    data: {},
+	    dataType: 'json',
+	    success: function(ret) {
+	    	lock = true
+	    	ethis.attr('href','javascript:state('+uid+');')
+	    	ethis.html('审核通过')
+	    	$('#state_txt_'+uid).html('待审核');
+	    },
+    	error:function(ret) {
+    		alert('更新失败请重试')
+    	}
+	});
+	}
+}
+function state(uid){
+	ethis = $("#state_"+uid)
+	if(lock)
+	{
+		lock = false
+		ethis.html('Loading')
+	$.ajax({
+	    type: "POST",
+	    url: '/admin/userlist?type=state&uid='+uid,
+	    data: {},
+	    dataType: 'json',
+	    success: function(ret) {
+	    	lock = true
+	    	ethis.attr('href','javascript:unstate('+uid+');')
+	    	ethis.html('下线')
+	    	$('#state_txt_'+uid).html('正常');
+	    },
+    	error:function(ret) {
+    		alert('更新失败请重试')
+    	}
+	});
+	}
+}
+function createim(uid){
+	//创建IM 子帐号
+	ethis = $("#im_"+uid)
+	if(lock)
+	{
+		lock = false
+		ethis.html('Loading')
+	$.ajax({
+	    type: "POST",
+	    url: '/admin/userlist?type=createim&uid='+uid,
+	    data: {},
+	    dataType: 'json',
+	    success: function(ret) {
+	    	lock = true
+	    	ethis.html('创建子帐号')
+	    	if (ret.ret==0)
+	    		alert('子帐号已创建')
+	    },
+    	error:function(ret) {
+    		alert('更新失败请重试')
+    	}
+	});
+	}
+}
+
+</script>
+{% endblock %}

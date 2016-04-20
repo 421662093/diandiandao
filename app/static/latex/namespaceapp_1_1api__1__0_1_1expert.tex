@@ -1,0 +1,283 @@
+\hypertarget{namespaceapp_1_1api__1__0_1_1expert}{}\section{app.\+api\+\_\+1\+\_\+0.\+expert 命名空间参考}
+\label{namespaceapp_1_1api__1__0_1_1expert}\index{app.\+api\+\_\+1\+\_\+0.\+expert@{app.\+api\+\_\+1\+\_\+0.\+expert}}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_ad67d0db8aad4a90a70ad5af337076f99}{get\+\_\+expert\+\_\+map}
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_a2aef8e3a305172d5fc2ec7ebd4386c14}{get\+\_\+expert\+\_\+list}
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_aeb7e02e987f3951d72f2df8a8de62613}{get\+\_\+expert\+\_\+info} (uid)
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_acf792e35e5b48243540dbac094c1628c}{get\+\_\+topic\+\_\+info} (tid)
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_a90c29c044f8ce0bb1d8c550e73b9a143}{get\+\_\+comment\+\_\+list}
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_adbc903e06dc21ff52496dde9502a8d32}{get\+\_\+expertsearch\+\_\+first\+\_\+list} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_a231f17add6f77504a34b2471ec0d89fc}{get\+\_\+expertsearch\+\_\+list} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_ac5a2e095710d8463a6208c8fe679c0c3}{get\+\_\+expertinv\+\_\+list}
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_a6bcc721401e0183a61d6dca2ce7e5cd7}{update\+\_\+expert\+\_\+inv} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_aba553c448587fe1245d73fb42bf47741}{update\+\_\+user\+\_\+intro} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_af76dad7f4f1c0ff33d1487959ea61b1d}{update\+\_\+expert\+\_\+apptime} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_a43304a981a0b995362481e9e626e5998}{update\+\_\+expert\+\_\+apptype} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1expert_a365c94a73099856dc8caad457e6750b1}{update\+\_\+expert\+\_\+appstate} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{namespaceapp_1_1api__1__0_1_1expert_a90c29c044f8ce0bb1d8c550e73b9a143}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+comment\+\_\+list@{get\+\_\+comment\+\_\+list}}
+\index{get\+\_\+comment\+\_\+list@{get\+\_\+comment\+\_\+list}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+comment\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+comment\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{}]{uid, }
+\item[{}]{page = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_a90c29c044f8ce0bb1d8c550e73b9a143}
+\begin{DoxyVerb}获取专家评论列表
+
+URL:/comment/info/<int:uid>
+    /comment/list/<int:uid>/<int:page>
+GET 参数: 
+    uid -- 专家ID (必填) 
+    page -- 页码 (选填 默认 1) 
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_aeb7e02e987f3951d72f2df8a8de62613}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+expert\+\_\+info@{get\+\_\+expert\+\_\+info}}
+\index{get\+\_\+expert\+\_\+info@{get\+\_\+expert\+\_\+info}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+expert\+\_\+info(uid)}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+expert\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{}]{uid}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_aeb7e02e987f3951d72f2df8a8de62613}
+\begin{DoxyVerb}获取专家详细信息
+
+URL:/expert/info/<int:uid>
+GET 参数:
+    uid -- 专家ID (必填)
+返回值
+expert
+    info 专家信息
+        _id 专家ID
+        name 姓名
+        sex 性别
+        auth 认证
+            expertprocess 认证专家流程  0未认证 1-4
+            expert 认证专家 1已认证 0未认证
+        bgurl 顶部背景图片
+        avaurl 头像地址
+        fileurl 介绍图片或视频地址
+        geo 坐标
+        grade 评级
+        intro 简介
+        content 详细介绍
+        job 职位
+        label 标签
+        meet_c 见面次数
+        follow 第三方List
+            name 名称
+            url 地址
+        edu 教育背景List
+            name 学校名称
+            start 开始时间
+            end 结束时间
+            major 专业
+            dip 学历
+        work 工作经历
+            start # 开始时间
+            end # 结束时间
+            name # 公司名称
+            job # 职位
+    comment
+    topic
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_a2aef8e3a305172d5fc2ec7ebd4386c14}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+expert\+\_\+list@{get\+\_\+expert\+\_\+list}}
+\index{get\+\_\+expert\+\_\+list@{get\+\_\+expert\+\_\+list}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+expert\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+expert\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{}]{x = {\ttfamily 0.0}, }
+\item[{}]{y = {\ttfamily 0.0}, }
+\item[{}]{ind = {\ttfamily 0}, }
+\item[{}]{index = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_a2aef8e3a305172d5fc2ec7ebd4386c14}
+\begin{DoxyVerb}获取附近专家(列表)
+
+URL:/expert/list/<int:ind>/<int:index>
+    /expert/map/<float:x>/<float:y>
+    /expert/map/<float:x>/<float:y>/<int:ind>
+    /expert/list/<float:x>/<float:y>/<int:ind>/<int:index>
+GET 参数: 
+    x -- 经度 (选填) 为0.0则 按照默认排序 否则 按照附近检索
+    y -- 纬度 (选填) 
+    ind -- 行业ID (选填 默认 0) 
+    index -- 页码 (选填 默认 1) 
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_ad67d0db8aad4a90a70ad5af337076f99}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+expert\+\_\+map@{get\+\_\+expert\+\_\+map}}
+\index{get\+\_\+expert\+\_\+map@{get\+\_\+expert\+\_\+map}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+expert\+\_\+map}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+expert\+\_\+map (
+\begin{DoxyParamCaption}
+\item[{}]{x = {\ttfamily 0}, }
+\item[{}]{y = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_ad67d0db8aad4a90a70ad5af337076f99}
+\begin{DoxyVerb}获取附近专家(地图)
+
+URL:/expert/map/<float:x>/<float:y>
+GET 参数: 
+    x -- 经度 (必填) 
+    y -- 纬度 (必填) 
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_ac5a2e095710d8463a6208c8fe679c0c3}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+expertinv\+\_\+list@{get\+\_\+expertinv\+\_\+list}}
+\index{get\+\_\+expertinv\+\_\+list@{get\+\_\+expertinv\+\_\+list}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+expertinv\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+expertinv\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{}]{index = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_ac5a2e095710d8463a6208c8fe679c0c3}
+\begin{DoxyVerb}专家清单
+URL:/expert/inv
+    /expert/inv/<int:index>
+GET 参数:
+    index -- 页码(默认1)
+返回值
+    _id 清单id
+    title 标题
+    content 内容
+    price 价格
+    unit 单位
+    sort 排序
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_adbc903e06dc21ff52496dde9502a8d32}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+expertsearch\+\_\+first\+\_\+list@{get\+\_\+expertsearch\+\_\+first\+\_\+list}}
+\index{get\+\_\+expertsearch\+\_\+first\+\_\+list@{get\+\_\+expertsearch\+\_\+first\+\_\+list}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+expertsearch\+\_\+first\+\_\+list()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+expertsearch\+\_\+first\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_adbc903e06dc21ff52496dde9502a8d32}
+\begin{DoxyVerb}快速检索专家列表
+
+URL:/expert/firstsearch
+GET 参数:
+    text -- 检索关键词 (必填)
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_a231f17add6f77504a34b2471ec0d89fc}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+expertsearch\+\_\+list@{get\+\_\+expertsearch\+\_\+list}}
+\index{get\+\_\+expertsearch\+\_\+list@{get\+\_\+expertsearch\+\_\+list}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+expertsearch\+\_\+list()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+expertsearch\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_a231f17add6f77504a34b2471ec0d89fc}
+\begin{DoxyVerb}全文检索专家列表
+
+URL:/expert/search
+GET 参数:
+    text -- 检索关键词 (必填 检索字段name,job,label) 
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_acf792e35e5b48243540dbac094c1628c}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!get\+\_\+topic\+\_\+info@{get\+\_\+topic\+\_\+info}}
+\index{get\+\_\+topic\+\_\+info@{get\+\_\+topic\+\_\+info}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{get\+\_\+topic\+\_\+info(tid)}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+get\+\_\+topic\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{}]{tid}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_acf792e35e5b48243540dbac094c1628c}
+\begin{DoxyVerb}获取话题详细信息
+
+URL:/topic/info/<int:tid>
+GET 参数: 
+    tid -- 话题ID (必填) 
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_a365c94a73099856dc8caad457e6750b1}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!update\+\_\+expert\+\_\+appstate@{update\+\_\+expert\+\_\+appstate}}
+\index{update\+\_\+expert\+\_\+appstate@{update\+\_\+expert\+\_\+appstate}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{update\+\_\+expert\+\_\+appstate()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+update\+\_\+expert\+\_\+appstate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_a365c94a73099856dc8caad457e6750b1}
+\begin{DoxyVerb}更新订单状态（专家）
+URL:/expert/updateappstate
+POST 参数:
+    appid -- 订单id
+    state -- 状态状态 -1取消订单 0拒绝接单 2确认接单 4等待用户确认 5已完成
+    time -- 见面时间(分钟) 当state为4时有效
+    cancelremark -- 取消备注
+返回值
+    {'ret':1} 成功
+    -1 订单状态改变失败
+    -5 系统异常
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_af76dad7f4f1c0ff33d1487959ea61b1d}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!update\+\_\+expert\+\_\+apptime@{update\+\_\+expert\+\_\+apptime}}
+\index{update\+\_\+expert\+\_\+apptime@{update\+\_\+expert\+\_\+apptime}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{update\+\_\+expert\+\_\+apptime()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+update\+\_\+expert\+\_\+apptime (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_af76dad7f4f1c0ff33d1487959ea61b1d}
+\begin{DoxyVerb}更新专家可预约时间
+URL:/expert/updateapptime
+POST 参数:
+    apptime -- 预约时间数组[时间戳1,时间戳2]
+返回值
+    {'ret':1} 成功
+    -5 系统异常
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_a43304a981a0b995362481e9e626e5998}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!update\+\_\+expert\+\_\+apptype@{update\+\_\+expert\+\_\+apptype}}
+\index{update\+\_\+expert\+\_\+apptype@{update\+\_\+expert\+\_\+apptype}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{update\+\_\+expert\+\_\+apptype()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+update\+\_\+expert\+\_\+apptype (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_a43304a981a0b995362481e9e626e5998}
+\begin{DoxyVerb}更新专家预约模式
+URL:/expert/updateapptime
+POST 参数:
+    call -- 通话模式 1开启 0关闭
+    meet -- 见面模式 1开启 0关闭
+返回值
+    {'ret':1} 成功
+    -5 系统异常
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_a6bcc721401e0183a61d6dca2ce7e5cd7}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!update\+\_\+expert\+\_\+inv@{update\+\_\+expert\+\_\+inv}}
+\index{update\+\_\+expert\+\_\+inv@{update\+\_\+expert\+\_\+inv}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{update\+\_\+expert\+\_\+inv()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+update\+\_\+expert\+\_\+inv (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_a6bcc721401e0183a61d6dca2ce7e5cd7}
+\begin{DoxyVerb}更新专家清单
+URL:/expert/updateinv
+POST 参数:
+    eid 清单id  id大于0为编辑 否则新添加
+    title 标题
+    content 内容
+    price 价格
+    unit 单位
+    #sort 排序
+返回值
+    {'ret':1} 成功
+    -5 系统异常
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1expert_aba553c448587fe1245d73fb42bf47741}{}\index{app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}!update\+\_\+user\+\_\+intro@{update\+\_\+user\+\_\+intro}}
+\index{update\+\_\+user\+\_\+intro@{update\+\_\+user\+\_\+intro}!app\+::api\+\_\+1\+\_\+0\+::expert@{app\+::api\+\_\+1\+\_\+0\+::expert}}
+\subsubsection[{update\+\_\+user\+\_\+intro()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+expert.\+update\+\_\+user\+\_\+intro (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1expert_aba553c448587fe1245d73fb42bf47741}
+\begin{DoxyVerb}更新简介
+URL:/user/updateintro
+POST 参数:
+    label -- 标签 字符串数组
+    fileurl -- 上传文件url
+    intro -- 简介
+    content -- 内容
+返回值
+    {'ret':1} 成功
+    -5 系统异常
+\end{DoxyVerb}
+ 

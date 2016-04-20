@@ -1,0 +1,58 @@
+\hypertarget{namespaceapp_1_1api__1__0_1_1pay}{}\section{app.\+api\+\_\+1\+\_\+0.\+pay 命名空间参考}
+\label{namespaceapp_1_1api__1__0_1_1pay}\index{app.\+api\+\_\+1\+\_\+0.\+pay@{app.\+api\+\_\+1\+\_\+0.\+pay}}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1pay_a01e5abc755b4a6e7a8c5c7c6b1126752}{get\+\_\+payid} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1pay_a34668377e37350b407ecbddc69e0ecbc}{do\+\_\+charge} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1pay_a282e34eae614dface5767b070af4de82}{do\+\_\+recharge} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{namespaceapp_1_1api__1__0_1_1pay_a34668377e37350b407ecbddc69e0ecbc}{}\index{app\+::api\+\_\+1\+\_\+0\+::pay@{app\+::api\+\_\+1\+\_\+0\+::pay}!do\+\_\+charge@{do\+\_\+charge}}
+\index{do\+\_\+charge@{do\+\_\+charge}!app\+::api\+\_\+1\+\_\+0\+::pay@{app\+::api\+\_\+1\+\_\+0\+::pay}}
+\subsubsection[{do\+\_\+charge()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+pay.\+do\+\_\+charge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1pay_a34668377e37350b407ecbddc69e0ecbc}
+\begin{DoxyVerb}获取预约订单支付签名（pingpp）
+
+URL:/pay/charge
+格式
+    JSON
+POST 参数:
+    order_no -- 预约订单ID
+    channel -- 支付方式
+    amount -- 价格
+返回值
+    返回charge JSON对象(pingpp)
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1pay_a282e34eae614dface5767b070af4de82}{}\index{app\+::api\+\_\+1\+\_\+0\+::pay@{app\+::api\+\_\+1\+\_\+0\+::pay}!do\+\_\+recharge@{do\+\_\+recharge}}
+\index{do\+\_\+recharge@{do\+\_\+recharge}!app\+::api\+\_\+1\+\_\+0\+::pay@{app\+::api\+\_\+1\+\_\+0\+::pay}}
+\subsubsection[{do\+\_\+recharge()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+pay.\+do\+\_\+recharge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1pay_a282e34eae614dface5767b070af4de82}
+\begin{DoxyVerb}获取充值支付签名（pingpp）
+
+URL:/pay/recharge
+格式
+    JSON
+POST 参数:
+    channel -- 支付方式
+    amount -- 价格
+返回值
+    返回charge JSON对象(pingpp)
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1pay_a01e5abc755b4a6e7a8c5c7c6b1126752}{}\index{app\+::api\+\_\+1\+\_\+0\+::pay@{app\+::api\+\_\+1\+\_\+0\+::pay}!get\+\_\+payid@{get\+\_\+payid}}
+\index{get\+\_\+payid@{get\+\_\+payid}!app\+::api\+\_\+1\+\_\+0\+::pay@{app\+::api\+\_\+1\+\_\+0\+::pay}}
+\subsubsection[{get\+\_\+payid()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+pay.\+get\+\_\+payid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1pay_a01e5abc755b4a6e7a8c5c7c6b1126752}

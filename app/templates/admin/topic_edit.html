@@ -1,0 +1,189 @@
+{% extends "admin/base.html" %}
+{% block title %}话题编辑{% endblock %}
+
+{% block css %}
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="/static/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="/static/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="/static/global/css/components-md.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="/static/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="/static/admin/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="/static/admin/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
+<link href="/static/admin/css/custom.css" rel="stylesheet" type="text/css"/>
+<!-- END THEME STYLES -->
+{% endblock %}
+
+{% block content %}
+
+			<!-- BEGIN PAGE HEADER-->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="#">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="{{ url_for('.topic_list') }}">话题管理</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">编辑话题</a>
+					</li>
+				</ul>
+			</div>
+			<!-- END PAGE HEADER-->
+
+		<div class="row">
+			<div class="col-md-12">
+			{% if _type==0%}
+			<form class="form-horizontal form-row-seperated" action='{{ url_for('.topic_edit',pindex=pindex,uid=uid, id=istopic and topic._id or 0, _external=True) }}' method="post" name="firstname" id="firstname">
+			{%else%}
+			<form class="form-horizontal form-row-seperated" action='{{ url_for('.topic_edit',id=istopic and topic._id or 0,_type=_type, _external=True) }}' method="post" name="firstname" id="firstname">
+			{%endif%}
+					{{form.hidden_tag()}}
+					<div class="portlet">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-shopping-cart"></i>
+								{% if istopic%}编辑话题 - {{topic.title}}{%else%}创建新话题{%endif%}
+							</div>
+							<div class="actions btn-set">
+								<button type="button" onclick="location.href='{{ url_for('.topic_list') }}'" name="back" class="btn default"><i class="fa fa-angle-left"></i> 返回</button>
+								<button class="btn green" onclick="$('#firstname').submit();"><i class="fa fa-check-circle"></i> 保存并返回 </button>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="tabbable">
+								<div class="tab-content no-space">
+									<div class="tab-pane active" id="tab_general">
+										<div class="form-body">	
+
+											<div class="form-group">
+												<label class="col-md-2 control-label">所属专家ID: <span class="required">
+												* </span>
+												</label>
+												<div class="col-md-10">
+													<input type="text" class="form-control" id="eid" name="eid" value="{% if istopic %}{{topic.user_id}}{%else%}{{uid}}{%endif%}" >
+												</div>
+											</div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">发现首页排序: <span class="required">
+                                                * </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                	大于0显示到发现首页 <br/>
+                                                    <input type="text" class="form-control" id="discoverysort" name="discoverysort" value="{% if istopic %}{{topic.discoverysort}}{%else%}0{%endif%}">
+                                                </div>
+                                            </div>
+											<div class="form-group">
+												<label class="col-md-2 control-label">标题: <span class="required">
+												* </span>
+												</label>
+												<div class="col-md-10">
+													<input type="text" class="form-control" id="title" name="title" {% if istopic %}value="{{topic.title}}" {%endif%}>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2 control-label">简介: <span class="required">
+												* </span>
+												</label>
+												<div class="col-md-10">
+													<input type="text" class="form-control" id="intro" name="intro" {% if istopic %}value="{{topic.intro}}" {%endif%}>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2 control-label">内容: <span class="required">
+												* </span>
+												</label>
+												<div class="col-md-10">
+												<textarea id="content" name="content" style="height:150px" class="form-control">{% if istopic %}{{topic.content}}{%endif%}</textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2 control-label">支付信息: <span class="required">
+												* </span>
+												</label>
+												<div class="col-md-10">
+													通话时间 <select class="table-group-action-input form-control input-medium" id="calltime" name="calltime">
+														<option value="10" {% if istopic %}{% if topic.pay.calltime==10 %}selected="selected"{%endif%}{%endif%}>10分钟</option>
+                                                        <option value="15" {% if istopic %}{% if topic.pay.calltime==15 %}selected="selected"{%endif%}{%endif%}>15分钟</option>
+                                                        <option value="20" {% if istopic %}{% if topic.pay.calltime==20 %}selected="selected"{%endif%}{%endif%}>20分钟</option>
+                                                        <option value="25" {% if istopic %}{% if topic.pay.calltime==25 %}selected="selected"{%endif%}{%endif%}>25分钟</option>
+														<option value="30" {% if istopic %}{% if topic.pay.calltime==30 %}selected="selected"{%endif%}{%endif%}>30分钟</option>
+                                                        <option value="40" {% if istopic %}{% if topic.pay.calltime==40 %}selected="selected"{%endif%}{%endif%}>40分钟</option>
+														<option value="45" {% if istopic %}{% if topic.pay.calltime==45 %}selected="selected"{%endif%}{%endif%}>45分钟</option>
+                                                        <option value="50" {% if istopic %}{% if topic.pay.calltime==50 %}selected="selected"{%endif%}{%endif%}>50分钟</option>
+														<option value="60" {% if istopic %}{% if topic.pay.calltime==60 %}selected="selected"{%endif%}{%endif%}>1小时</option>
+                                                        <option value="90" {% if istopic %}{% if topic.pay.calltime==90 %}selected="selected"{%endif%}{%endif%}>1.5小时</option>
+														<option value="120" {% if istopic %}{% if topic.pay.calltime==120 %}selected="selected"{%endif%}{%endif%}>2小时</option>
+                                                        <option value="150" {% if istopic %}{% if topic.pay.calltime==150 %}selected="selected"{%endif%}{%endif%}>2.5小时</option>
+														<option value="180" {% if istopic %}{% if topic.pay.calltime==180 %}selected="selected"{%endif%}{%endif%}>3小时</option>
+														<option value="240" {% if istopic %}{% if topic.pay.calltime==240 %}selected="selected"{%endif%}{%endif%}>4小时</option>
+													</select>
+													通话价格(元) <input type="text" class="form-control" id="call" name="call" value="{% if istopic %}{{topic.pay.call}}{%else%}0{%endif%}">
+													见面时间 <select class="table-group-action-input form-control input-medium" id="meettime" name="meettime">
+                                                        <option value="30" {% if istopic %}{% if topic.pay.meettime==30 %}selected="selected"{%endif%}{%endif%}>0.5小时</option>
+                                                        <option value="60" {% if istopic %}{% if topic.pay.meettime==60 %}selected="selected"{%endif%}{%endif%}>1小时</option>
+                                                        <option value="90" {% if istopic %}{% if topic.pay.meettime==90 %}selected="selected"{%endif%}{%endif%}>1.5小时</option>
+                                                        <option value="120" {% if istopic %}{% if topic.pay.meettime==120 %}selected="selected"{%endif%}{%endif%}>2小时</option>
+                                                        <option value="150" {% if istopic %}{% if topic.pay.meettime==150 %}selected="selected"{%endif%}{%endif%}>2.5小时</option>
+														<option value="180" {% if istopic %}{% if topic.pay.meettime==180 %}selected="selected"{%endif%}{%endif%}>3小时</option>
+                                                        <option value="210" {% if istopic %}{% if topic.pay.meettime==210 %}selected="selected"{%endif%}{%endif%}>3.5小时</option>
+                                                        <option value="240" {% if istopic %}{% if topic.pay.meettime==240 %}selected="selected"{%endif%}{%endif%}>4小时</option>
+													</select>
+													见面价格(元) <input type="text" class="form-control" id="meet" name="meet" value="{% if istopic %}{{topic.pay.meet}}{%else%}0{%endif%}">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2 control-label">话题统计: <span class="required">
+												* </span>
+												</label>
+												<div class="col-md-10">
+													评论人数 <input type="text" class="form-control" id="topic_count" name="topic_count" value="{% if istopic %}{{topic.stats.topic_count}}{%else%}0{%endif%}">
+													星星数量 <input type="text" class="form-control" id="topic_total" name="topic_total" value="{% if istopic %}{{topic.stats.topic_total}}{%else%}0{%endif%}">
+												</div>
+											</div>
+											<input type="hidden" id="uid" name="uid" value="{{uid}}">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+{% endblock %}
+
+{% block js %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="/static/global/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="/static/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+<script src="/static/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+<script src="/static/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="/static/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="/static/admin/scripts/layout.js" type="text/javascript"></script>
+
+<script src="/static/global/scripts/datatable.js"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+        jQuery(document).ready(function() {    
+           Metronic.init(); // init metronic core components
+			Layout.init(); // init current layout
+			//QuickSidebar.init(); // init quick sidebar
+			//Demo.init(); // init demo features
+           //EcommerceProductsEdit.init();
+        });
+    </script>
+<!-- END JAVASCRIPTS -->
+{% endblock %}

@@ -1,0 +1,86 @@
+\hypertarget{namespaceapp_1_1api__1__0_1_1discovery}{}\section{app.\+api\+\_\+1\+\_\+0.\+discovery 命名空间参考}
+\label{namespaceapp_1_1api__1__0_1_1discovery}\index{app.\+api\+\_\+1\+\_\+0.\+discovery@{app.\+api\+\_\+1\+\_\+0.\+discovery}}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1discovery_a4f7c2da9cb8f1b3438511afbd624e9f6}{get\+\_\+discovery\+\_\+list} ()
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1discovery_a045bba337777e4eae3ce1da1305b4564}{get\+\_\+discovery\+\_\+\+Inventory} (id)
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1discovery_a92b592ac6747bde35ee3f16604abd4cf}{get\+\_\+discovery\+\_\+\+Inventory\+\_\+\+Expert} (iid, tid)
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1discovery_a7f7dbb558f2e3c659d375959ba8bbcd2}{get\+\_\+discovery\+\_\+\+Topic\+Team} (tid)
+\item 
+def \hyperlink{namespaceapp_1_1api__1__0_1_1discovery_ac50b92e3ac84b3437eaf184c15818c3d}{get\+\_\+discovery\+\_\+\+Expert\+Team} (tid)
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{namespaceapp_1_1api__1__0_1_1discovery_ac50b92e3ac84b3437eaf184c15818c3d}{}\index{app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}!get\+\_\+discovery\+\_\+\+Expert\+Team@{get\+\_\+discovery\+\_\+\+Expert\+Team}}
+\index{get\+\_\+discovery\+\_\+\+Expert\+Team@{get\+\_\+discovery\+\_\+\+Expert\+Team}!app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}}
+\subsubsection[{get\+\_\+discovery\+\_\+\+Expert\+Team(tid)}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+discovery.\+get\+\_\+discovery\+\_\+\+Expert\+Team (
+\begin{DoxyParamCaption}
+\item[{}]{tid}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1discovery_ac50b92e3ac84b3437eaf184c15818c3d}
+\begin{DoxyVerb}获取专家团专家列表
+
+URL:/discovery/topicteam/expert/<int:tid>
+GET 参数:
+    tid -- 话题ID (必填)
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1discovery_a045bba337777e4eae3ce1da1305b4564}{}\index{app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}!get\+\_\+discovery\+\_\+\+Inventory@{get\+\_\+discovery\+\_\+\+Inventory}}
+\index{get\+\_\+discovery\+\_\+\+Inventory@{get\+\_\+discovery\+\_\+\+Inventory}!app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}}
+\subsubsection[{get\+\_\+discovery\+\_\+\+Inventory(id)}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+discovery.\+get\+\_\+discovery\+\_\+\+Inventory (
+\begin{DoxyParamCaption}
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1discovery_a045bba337777e4eae3ce1da1305b4564}
+\begin{DoxyVerb}获取清单信息
+
+URL:/discovery/inventory/<int:id>
+GET 参数: 
+    id -- 清单ID (必填) 
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1discovery_a92b592ac6747bde35ee3f16604abd4cf}{}\index{app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}!get\+\_\+discovery\+\_\+\+Inventory\+\_\+\+Expert@{get\+\_\+discovery\+\_\+\+Inventory\+\_\+\+Expert}}
+\index{get\+\_\+discovery\+\_\+\+Inventory\+\_\+\+Expert@{get\+\_\+discovery\+\_\+\+Inventory\+\_\+\+Expert}!app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}}
+\subsubsection[{get\+\_\+discovery\+\_\+\+Inventory\+\_\+\+Expert(iid, tid)}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+discovery.\+get\+\_\+discovery\+\_\+\+Inventory\+\_\+\+Expert (
+\begin{DoxyParamCaption}
+\item[{}]{iid, }
+\item[{}]{tid}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1discovery_a92b592ac6747bde35ee3f16604abd4cf}
+\begin{DoxyVerb}获取清单话题专家列表
+
+URL:/discovery/inventory/<int:iid>/<int:tid>
+GET 参数: 
+    iid -- 清单ID (必填) 
+    tid -- 话题ID (必填) 
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1discovery_a4f7c2da9cb8f1b3438511afbd624e9f6}{}\index{app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}!get\+\_\+discovery\+\_\+list@{get\+\_\+discovery\+\_\+list}}
+\index{get\+\_\+discovery\+\_\+list@{get\+\_\+discovery\+\_\+list}!app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}}
+\subsubsection[{get\+\_\+discovery\+\_\+list()}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+discovery.\+get\+\_\+discovery\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1discovery_a4f7c2da9cb8f1b3438511afbd624e9f6}
+\begin{DoxyVerb}获取发现首页信息
+
+URL:/discovery/list
+GET 参数: 
+    无
+\end{DoxyVerb}
+ \hypertarget{namespaceapp_1_1api__1__0_1_1discovery_a7f7dbb558f2e3c659d375959ba8bbcd2}{}\index{app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}!get\+\_\+discovery\+\_\+\+Topic\+Team@{get\+\_\+discovery\+\_\+\+Topic\+Team}}
+\index{get\+\_\+discovery\+\_\+\+Topic\+Team@{get\+\_\+discovery\+\_\+\+Topic\+Team}!app\+::api\+\_\+1\+\_\+0\+::discovery@{app\+::api\+\_\+1\+\_\+0\+::discovery}}
+\subsubsection[{get\+\_\+discovery\+\_\+\+Topic\+Team(tid)}]{\setlength{\rightskip}{0pt plus 5cm}def app.\+api\+\_\+1\+\_\+0.\+discovery.\+get\+\_\+discovery\+\_\+\+Topic\+Team (
+\begin{DoxyParamCaption}
+\item[{}]{tid}
+\end{DoxyParamCaption}
+)}\label{namespaceapp_1_1api__1__0_1_1discovery_a7f7dbb558f2e3c659d375959ba8bbcd2}
+\begin{DoxyVerb}获取专家团详情信息
+
+URL:/discovery/topicteam/<int:tid>
+GET 参数: 
+    tid -- 话题ID (必填) 
+\end{DoxyVerb}
+ 

@@ -1,0 +1,10 @@
+digraph "app" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_d422163b96683743ed3963d4aac17747 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_d422163b96683743ed3963d4aac17747.html"];
+    dir_d422163b96683743ed3963d4aac17747 [shape=plaintext label="app"];
+    dir_60a930f632eaa6e098fcf3035beaa39a [shape=box label="api_1_0" color="black" fillcolor="white" style="filled" URL="dir_60a930f632eaa6e098fcf3035beaa39a.html"];
+  }
+}
